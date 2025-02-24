@@ -12,14 +12,16 @@ def get_ip():
     return ip
 
 if __name__ == "__main__":
+    YYS = {"中国电信":"%40telecom","中国移动":"%40cmcc","中国联通":"%40unicom","校园网":""}
     ARG = {"title":"校园网"}
     IP = get_ip()
     Success = "注销页"
     Fail = "上网登录页"
     user_account = '输入学号'
     user_password = '填入用户密码'
+    yys = YYS["此处填入运营商"]#中国电信,中国移动,中国联通，校园网
     Login_IP = 'http://10.2.5.251/'
-    sign_parameter = f'http://10.2.5.251:801/eportal/?c=Portal&a=login&callback=dr1740318353616&login_method=1&user_account={user_account}%40telecom&user_password={user_password}&wlan_user_ip={IP}&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=NAS&jsVersion=3.0&_=1740318341152'
+    sign_parameter = f'http://10.2.5.251:801/eportal/?c=Portal&a=login&callback=dr1740318353616&login_method=1&user_account={user_account}{yys}&user_password={user_password}&wlan_user_ip={IP}&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=NAS&jsVersion=3.0&_=1740318341152'
     try:
         de_out = requests.get(sign_parameter,timeout=2).text
         get_out = requests.get(Login_IP,timeout=2).text
@@ -30,7 +32,7 @@ if __name__ == "__main__":
         toast(body='已登录',**ARG)
     elif Fail in get_out:
         base64_end = de_out.find(f'=="')+2
-        if base64_end == -1:
+        if base64_end == 1:
             toast(body=f"登陆失败:未知错误",**ARG)
             sys.exit()
         else:
