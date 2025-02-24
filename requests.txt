@@ -1,0 +1,5 @@
+socket
+base64
+win11toast
+requests
+sys

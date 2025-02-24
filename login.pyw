@@ -18,7 +18,6 @@ if __name__ == "__main__":
     Fail = "上网登录页"
     user_account = '输入学号'
     user_password = '填入用户密码'
-    
     Login_IP = 'http://10.2.5.251/'
     sign_parameter = f'http://10.2.5.251:801/eportal/?c=Portal&a=login&callback=dr1740318353616&login_method=1&user_account={user_account}%40telecom&user_password={user_password}&wlan_user_ip={IP}&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=NAS&jsVersion=3.0&_=1740318341152'
     try:
